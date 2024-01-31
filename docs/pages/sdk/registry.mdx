@@ -1,34 +1,3 @@
-# Registry Table of Contents
-
-- [Registry Table of Contents](#registry-table-of-contents)
-- [Registry](#registry)
-  - [Initialization](#initialization)
-    - [Creating a Registry Instance](#creating-a-registry-instance)
-  - [Read Functions](#read-functions)
-    - [Get Allo Owner](#get-allo-owner)
-    - [Get Default Admin Role](#get-default-admin-role)
-    - [Get Native](#get-native)
-    - [Get Anchor To Profile Id](#get-anchor-to-profile-id)
-    - [Get Profile By Anchor](#get-profile-by-anchor)
-    - [Get Profile By ID](#get-profile-by-id)
-    - [Get Role Admin](#get-role-admin)
-    - [Check Role Membership](#check-role-membership)
-    - [Check Membership in Profile](#check-membership-in-profile)
-    - [Check Ownership of Profile](#check-ownership-of-profile)
-    - [Check Ownership or Membership in Profile](#check-ownership-or-membership-in-profile)
-    - [Get Profile ID to Pending Owner](#get-profile-id-to-pending-owner)
-    - [Get Profile Details by ID](#get-profile-details-by-id)
-  - [Write Functions](#write-functions)
-    - [Creating a Profile](#creating-a-profile)
-    - [Accepting Profile Ownership](#accepting-profile-ownership)
-    - [Adding Members to a Profile](#adding-members-to-a-profile)
-    - [Removing Members from a Profile](#removing-members-from-a-profile)
-    - [Updating Profile Metadata](#updating-profile-metadata)
-    - [Updating Profile Name](#updating-profile-name)
-    - [Updating Profile Pending Owner](#updating-profile-pending-owner)
-
----
-
 # Registry
 
 The Registry class provides a set of functions for interacting with the Registry contract's view and write functions. This README provides examples and explanations for using these functions.
@@ -41,10 +10,10 @@ Before using the functions provided by the Registry module, you need to create a
 
 To create a new Registry instance, you need to provide the chain information. In this example, we're using the 5 chain information.
 
-```javascript
+```ts twoslash
 import { Registry } from "@allo-team/allo-v2-sdk/";
 
-const registry = new Registry({ chain: 5 });
+const registry = new Registry({ chain: 11155111 });
 ```
 
 This registry instance can then be used to call various read and transactional functions provided by the Registry module. Refer to the sections above for detailed examples on how to use these functions. Remember to replace placeholder values with actual values according to your requirements.
@@ -57,8 +26,12 @@ This registry instance can then be used to call various read and transactional f
 
 To retrieve the Allo Owner:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const alloOwner: string = await registry.getAlloOwner();
+
 console.log(alloOwner);
 ```
 
@@ -66,8 +39,12 @@ console.log(alloOwner);
 
 To get the Default Admin Role:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const defaultAdminRole: string = await registry.getDefaultAdminRole();
+
 console.log(defaultAdminRole);
 ```
 
@@ -75,8 +52,12 @@ console.log(defaultAdminRole);
 
 To obtain the Native:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const native: string = await registry.getNative();
+
 console.log(native);
 ```
 
@@ -84,9 +65,13 @@ console.log(native);
 
 To retrieve the Profile ID associated with an Anchor:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const anchor = "your_anchor_value_here";
 const profileId: string = await registry.getAnchorToProfileId(anchor);
+
 console.log(profileId);
 ```
 
@@ -94,11 +79,16 @@ console.log(profileId);
 
 To fetch a Profile using an Anchor:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { Profile } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
+
 
 const anchor = "your_anchor_value_here";
 const profile: Profile = await registry.getProfileByAnchor(anchor);
+
 console.log(profile);
 ```
 
@@ -106,11 +96,14 @@ console.log(profile);
 
 To retrieve a Profile using its ID:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { Profile } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const profileId = "your_profile_id_here";
 const profile: Profile = await registry.getProfileById(profileId);
+
 console.log(profile);
 ```
 
@@ -118,9 +111,14 @@ console.log(profile);
 
 To get the admin of a specified role:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+import { Profile } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
 const role = "your_role_here";
 const admin: string = await registry.getRoleAdmin(role);
+
 console.log(admin);
 ```
 
@@ -128,14 +126,18 @@ console.log(admin);
 
 To check if an account has a specific role:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { HasRoleArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
 
 const hasRoleArgs: HasRoleArgs = {
   role: "your_role_here",
   account: "account_address_here",
 };
 const hasRole: boolean = await registry.hasRole(hasRoleArgs);
+
 console.log(hasRole);
 ```
 
@@ -143,8 +145,11 @@ console.log(hasRole);
 
 To check if an account is a member of a profile:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileAndAddressArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
 
 const profileAndAddressArgs: ProfileAndAddressArgs = {
   profileId: "your_profile_id_here",
@@ -153,6 +158,7 @@ const profileAndAddressArgs: ProfileAndAddressArgs = {
 const isMember: boolean = await registry.isMemberOfProfile(
   profileAndAddressArgs,
 );
+
 console.log(isMember);
 ```
 
@@ -160,14 +166,18 @@ console.log(isMember);
 
 To check if an account is the owner of a profile:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileAndAddressArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
 
 const profileAndAddressArgs: ProfileAndAddressArgs = {
   profileId: "your_profile_id_here",
   account: "account_address_here",
 };
 const isOwner: boolean = await registry.isOwnerOfProfile(profileAndAddressArgs);
+
 console.log(isOwner);
 ```
 
@@ -175,8 +185,11 @@ console.log(isOwner);
 
 To check if an account is either the owner or a member of a profile:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileAndAddressArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
+
+const registry = new Registry({ chain: 11155111 });
 
 const profileAndAddressArgs: ProfileAndAddressArgs = {
   profileId: "your_profile_id_here",
@@ -185,6 +198,7 @@ const profileAndAddressArgs: ProfileAndAddressArgs = {
 const isOwnerOrMember: boolean = await registry.isOwnerOrMemberOfProfile(
   profileAndAddressArgs,
 );
+
 console.log(isOwnerOrMember);
 ```
 
@@ -192,11 +206,15 @@ console.log(isOwnerOrMember);
 
 To get the pending owner of a profile:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const profileId = "your_profile_id_here";
 const pendingOwner: string = await registry.getProfileIdToPendingOwner(
   profileId,
 );
+
 console.log(pendingOwner);
 ```
 
@@ -204,11 +222,14 @@ console.log(pendingOwner);
 
 To get profile details by ID:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { Profile } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const profileId = "your_profile_id_here";
 const profile: Profile = await registry.getProfilesById(profileId);
+
 console.log(profile);
 ```
 
@@ -220,10 +241,12 @@ console.log(profile);
 
 To create a new profile using the `createProfile` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { CreateProfileArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 import { TransactionData } from "@allo-team/allo-v2-sdk/dist/Common/types";
 
+const registry = new Registry({ chain: 11155111 });
 const createProfileArgs: CreateProfileArgs = {
   nonce: 3,
   name: "Module Test 1",
@@ -241,6 +264,7 @@ const createProfileArgs: CreateProfileArgs = {
 const txData: TransactionData = registry.createProfile(createProfileArgs);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   to: txData.to,
@@ -255,12 +279,16 @@ console.log(`Transaction hash: ${hash}`);
 
 To accept ownership of a profile using the `acceptProfileOwnership` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 const profileId = "your_profile_id_here";
 
 const txData: TransactionData = registry.acceptProfileOwnership(profileId);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
@@ -275,7 +303,10 @@ console.log(`Transaction hash: ${hash}`);
 
 To add members to a profile using the `addMembers` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
+
+const registry = new Registry({ chain: 11155111 });
 import { MemberArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
 const memberArgs: MemberArgs = {
@@ -290,6 +321,7 @@ const memberArgs: MemberArgs = {
 const txData: TransactionData = registry.addMembers(memberArgs);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
@@ -304,9 +336,11 @@ console.log(`Transaction hash: ${hash}`);
 
 To remove members from a profile using the `removeMembers` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { MemberArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const memberArgs: MemberArgs = {
   profileId: "your_profile_id_here",
   members: [
@@ -319,6 +353,7 @@ const memberArgs: MemberArgs = {
 const txData: TransactionData = registry.removeMembers(memberArgs);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
@@ -333,9 +368,11 @@ console.log(`Transaction hash: ${hash}`);
 
 To update profile metadata using the `updateProfileMetadata` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileMetadataArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const profileMetadataArgs: ProfileMetadataArgs = {
   profileId: "your_profile_id_here",
   metadata: {
@@ -348,6 +385,7 @@ const txData: TransactionData =
   registry.updateProfileMetadata(profileMetadataArgs);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
@@ -362,9 +400,11 @@ console.log(`Transaction hash: ${hash}`);
 
 To update profile name using the `updateProfileName` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileNameArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const profileNameArgs: ProfileNameArgs = {
   profileId: "your_profile_id_here",
   name: "New Profile Name",
@@ -373,6 +413,7 @@ const profileNameArgs: ProfileNameArgs = {
 const txData: TransactionData = registry.updateProfileName(profileNameArgs);
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
@@ -387,9 +428,11 @@ console.log(`Transaction hash: ${hash}`);
 
 To update the pending owner of a profile using the `updateProfilePendingOwner` function:
 
-```javascript
+```ts twoslash
+import { Registry } from "@allo-team/allo-v2-sdk/";
 import { ProfileAndAddressArgs } from "@allo-team/allo-v2-sdk/dist/Registry/types";
 
+const registry = new Registry({ chain: 11155111 });
 const profilePendingOwnerArgs: ProfileAndAddressArgs = {
   profileId: "your_profile_id_here",
   account: "new_pending_owner_address_here",
@@ -400,6 +443,7 @@ const txData: TransactionData = registry.updateProfilePendingOwner(
 );
 
 // Client could be from ethers, viem, etc..
+// @noErrors
 const hash = await client.sendTransaction({
   data: txData.data,
   account,
