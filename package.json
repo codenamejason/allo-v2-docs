@@ -1,0 +1,17 @@
+{
+  "name": "allo-v2-docs",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview"
+  },
+  "dependencies": {
+    "@allo-team/allo-v2-sdk": "^1.0.39",
+    "@typescript/twoslash": "^3.2.4",
+    "react": "latest",
+    "react-dom": "latest",
+    "vocs": "latest"
+  }
+}
